@@ -1,0 +1,53 @@
+noamdel, amiweil
+Noam Delbari (315005066), Amichai Weil(052816469)
+EX: 2
+
+FILES:
+uthreads.cpp contains all functions, as well as a class,  for handling threads.
+
+
+ANSWERS:
+
+ ==============   ANSWERS  ===============
+
+1.
+
+A program simulating a multi-player game.
+reasons:
+ there are a lot of thread switches. user-level threads have lowest overhead.
+ There are less IO requests, which lessens the disadvantage of getting stuck waiting for OS to give access.
+ Since the program knows the content of the threads, it can schedule the switches intelligently.
+ As well as knowing when we need to lock resources, and when it is unnecessary.
+
+
+2.
+Advantages:
+A process can have multiple threads, allowing one tab to exhibit multi-thread behaviour, which might be necessary.
+All threads of a tab probably will need the same resources, while different tabs should have different resources,
+ and shouldn't necessarily be given access to a different tabs resources.
+ If a tab fails, it might not cause the other tabs to fail.
+
+Disadvantages:
+Processes are heavier then threads, so keeping open multiple tabs is resource-intensive if they are all processes.
+Switching between processes has a larger overhead.
+
+
+
+3.
+
+ keyboard: type 'kill <pid_number>'
+ OS  listens to keyboard, via interrupts, sending to shell.
+ shell : receives the kill command  and sends a SIGKILL or SIGTERM signal.
+ if SIGKILL flag is used:
+ OS:  if SIGKILL interrupt is received, it terminates the process, without regard to the internal workings of the process.
+ if SIGTERM is used, it is sent to the process, so it can handle it, and terminate itself after doing closing actions.
+
+
+4.
+real time - measures all CPU cycles - which gives a measure of "real world time",
+use: measure the actual time it takes for a program to complete, if we want to include all overhead-time, IO requests,
+ waiting for other processes etc.
+
+virtual time - only counts active cycles of this process,
+example: can help us give equal active time to each user-level thread. not including overhead, other processes etc.
+
